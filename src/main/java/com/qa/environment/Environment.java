@@ -24,7 +24,7 @@ public class Environment {
     private static String publishInstance = "";
     private static User userAdmin = new User();
 
-    public static void readDataFromFile(String sheetName) throws IOException{
+    public static void readDataFromSheet(String sheetName) throws IOException{
         LOGGER.debug("Read test environment data from sheet [{}] of file [{}]", sheetName, FILE.getAbsolutePath());
 
         try {
