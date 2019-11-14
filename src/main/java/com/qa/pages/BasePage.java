@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
@@ -48,6 +49,14 @@ public class BasePage {
         waitUntilReadyStateComplete();
         PageFactory
             .initElements(new AjaxElementLocatorFactory(DriverUtil.getWebDriver(), DriverUtil.DEFAULT_WAIT), this);
+    }
+
+    protected WebElement findElement(By locator) {
+        return DriverUtil.getWebDriver().findElement(locator);
+    }
+
+    protected List<WebElement> findElements(By locator) {
+        return DriverUtil.getWebDriver().findElements(locator);
     }
 
     protected boolean waitUntilReadyStateComplete() throws TimeoutException {
@@ -143,6 +152,11 @@ public class BasePage {
 
     public void pressEscKey() {
         LOGGER.info("Press Esc key.");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         actions.sendKeys(Keys.ESCAPE).build().perform();
     }
 
